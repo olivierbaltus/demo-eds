@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var fs = require("fs");
+var host = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+var port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 
 app.get('/types', function (req, res) {
    fs.readFile( __dirname + "/eds_ressources/" + "eds_types.json", 'utf8', function (err, data) {
@@ -22,9 +24,6 @@ app.post('/type/', function (req, res) {
       res.end( data );
    });
 })
-var server = app.listen(8081, function () {
-
-   var host = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
-   var port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server = app.listen(port, host, function () {
    console.log("EDS-demo service listening at http://%s:%s", host, port)
 })
