@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var fs = require("fs");
-var host = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+var host = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 var port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 
 app.get('/types', function (req, res) {
@@ -24,6 +24,6 @@ app.post('/type/', function (req, res) {
       res.end( data );
    });
 })
-var server = app.listen(port, host, function () {
+var server = app.listen(host, port, function () {
    console.log("EDS-demo service listening at http://%s:%s", host, port)
 })
