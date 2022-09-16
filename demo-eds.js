@@ -24,6 +24,6 @@ app.post('/type/', function (req, res) {
       res.end( data );
    });
 })
-var server = app.listen(host, port, function () {
+var server = app.listen(port, host, function () {
    console.log("EDS-demo service listening at http://%s:%s", host, port)
 })
